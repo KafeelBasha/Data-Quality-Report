@@ -1,5 +1,5 @@
 # Data-Quality-Report
-Overview of the data using summary statistics
+Overview of the data using summary statistics, similar to 'dataQualityR' package in R.
 
 Returns a dictionary:
 - Removes columns having more than 40% of missing values
