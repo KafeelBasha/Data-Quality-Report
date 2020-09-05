@@ -21,7 +21,6 @@ def dataQuality(data):
             return len(x.unique())
         qr=dict()
         #Select only numeric data types
-        data=data.loc[:,data.isnull().mean<=0.4]
         data=data.select_dtypes(include=[np.number])
         for i in np.arange(0,len(data.columns),1):
             xi=data.agg({data.columns[i]:[count,unique,miss_per,np.min,np.max,np.mean,np.median,np.std,np.var,q1,q3,q99]})
