@@ -28,7 +28,8 @@ def dataQuality(data):
             df1=pd.DataFrame(qr)
             #df1.index=xi.index
             df1.index=["Count","Unique","Miss_per","Min","Max","Mean","Median","Std","Var","Q1","Q3","q99"]
-        return df1.T
+            df1=df1.T.sort_values(by='Miss_per',ascending=False)
+        return df1[df1['Miss_per']<0.15]
     d['numeric']=numeric_quality(data)
     def cat_quality(data):
         def count(x):
@@ -49,6 +50,7 @@ def dataQuality(data):
             df2=pd.DataFrame(qr)
             #df2.index=xi.index
             df2.index=["Count","Unique","Miss_per","Freq_Level","freq_cat_Per"]
-        return df2.T
+            df2=df2.T.sort_values(by='Miss_per',ascending=False)
+        return df2[df2['Miss_per']<0.15]
     d['categorical']=cat_quality(data)
     return d
