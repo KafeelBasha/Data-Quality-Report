@@ -23,11 +23,11 @@ def dataQuality(data):
         #Select only numeric data types
         data=data.select_dtypes(include=[np.number])
         for i in np.arange(0,len(data.columns),1):
-            xi=data.agg({data.columns[i]:[count,unique,miss_per,np.min,np.max,np.mean,np.median,np.std,np.var,q1,q3,q99]})
+            xi=data.agg({data.columns[i]:[count,unique,miss_per,np.min,np.max,np.mean,np.median,np.std,q1,q3,q99]})
             qr[data.columns[i]]=xi.reset_index(drop=True)[data.columns[i]]
             df1=pd.DataFrame(qr)
             #df1.index=xi.index
-            df1.index=["Count","Unique","Miss_per","Min","Max","Mean","Median","Std","Var","Q1","Q3","q99"]
+            df1.index=["Count","Unique","Miss_per","Min","Max","Mean","Median","Std","Q1","Q3","q99"]
             df1=df1.T.sort_values(by='Miss_per',ascending=False)
         return df1[df1['Miss_per']<0.15]
     d['numeric']=numeric_quality(data)
